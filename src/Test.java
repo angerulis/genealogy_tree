@@ -7,47 +7,47 @@ public class Test  implements  GenealogyTreeInterface{
     }
 
     @Override
-    public Node addChild(Node child, int level, String parentName) {
+    public NodeInterface addChild(NodeInterface child, int level, String parentName) {
         return null;
     }
 
     @Override
-    public Node insertChild(Node child, int level, String parentName) {
+    public NodeInterface insertChild(NodeInterface child, int level, String parentName) {
         return null;
     }
 
     @Override
-    public ArrayList<Node> findIndividual(String firstName, String lastName) {
+    public ArrayList<NodeInterface> findIndividual(String firstName, String lastName) {
         return null;
     }
 
     @Override
-    public ArrayList<Node> findAllGrandParents(Node child) {
+    public ArrayList<NodeInterface> findAllGrandParents(NodeInterface child) {
         return null;
     }
 
     @Override
-    public ArrayList<Node> findAllGrandfathers(Node child) {
+    public ArrayList<NodeInterface> findAllGrandfathers(NodeInterface child) {
         return null;
     }
 
     @Override
-    public ArrayList<Node> findAllGrandMother(Node child) {
+    public ArrayList<NodeInterface> findAllGrandMother(NodeInterface child) {
         return null;
     }
 
     @Override
-    public ArrayList<Node> findAllGrandParentsPerLevel(Node child, int level) {
+    public ArrayList<NodeInterface> findAllGrandParentsPerLevel(NodeInterface child, int level) {
         return null;
     }
 
     @Override
-    public Node modifyInformation(String firstName, String lastName, int level) {
+    public NodeInterface modifyInformation(String firstName, String lastName, int level) {
         return null;
     }
 
     @Override
-    public Node deleteIndividual(String firstName, String lastName, int level) {
+    public NodeInterface deleteIndividual(String firstName, String lastName, int level) {
         return null;
     }
 }

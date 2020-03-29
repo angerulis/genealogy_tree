@@ -1,3 +1,2 @@
-public interface Node {
-
+public class Node {
 }
