@@ -56,4 +56,19 @@ public interface GenealogyTreeInterface {
      * @delete a specific individual from the tree
      */
     NodeInterface deleteIndividual(String firstName, String lastName, int level);
+
+    /**
+     * //TODO
+     * @add node interactively by filling node until a condition is met
+     * // METHODS
+     *     public Node<T> interactiveNodeAdd(){
+     *         System.out.println("Welcome to the Node creation program:");
+     *         Scanner input = new Scanner(System.in);
+     *         Person person = new Person();
+     *         person = person.interactiveCreation();
+     *         Node<T> node = new Node<T>();
+     *         return node;
+     *     }
+     *
+     */
 }

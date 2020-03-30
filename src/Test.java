@@ -1,8 +1,20 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Test  implements  GenealogyTreeInterface{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         Test t = new Test();
+        Scanner input = new Scanner(System.in);
+        SimpleDateFormat date = new SimpleDateFormat("d/M/y");
+        System.out.print("Date of Birth (Day/Month/Year): ");
+        String dateString = input.nextLine();
+        Date date1 = date.parse(dateString);
+        System.out.println(date1);
+        System.out.println(dateString);
+
 
     }
 
