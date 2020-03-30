@@ -51,5 +51,4 @@ public class Node<T> implements NodeInterface {
 
     public boolean isFirstGeneration() { return mother == null && father == null; }
 
-
 }
