@@ -23,7 +23,7 @@ public class Person {
     }
 
     // METHODS
-    private Person interactiveCreation(){
+    Person interactiveCreation(){
         try {
             Scanner input = new Scanner(System.in);
             SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/y");

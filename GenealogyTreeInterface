@@ -11,3 +11,23 @@ a. add a child per level and per parent name. Please note that children are disp
       i. delete a specific person from the tree per level and full name
 
 /*
+
+The project topic is described below (Please work together):
+
+ 1. Write pseudo-code of a genealogy tree that capture for each person its parents and his siblings: Each person has a full name, date of birth, place of birth, picture. You should implement the following methods
+
+      a. add a child per level and per parent names. Please note that children are displayed per descending age.
+      b. insert a child per level and per parent names
+      c. find list of persons per full name and per parents full names
+      d. find list of all direct grand-parents
+      e. find list of all direct grand-mothers
+      f. find list of all direct grand-fathers
+      g. find list of grand parents per tree level
+      h. update informations of specific person per tree level and per full name
+      i. delete a specific person from the tree per level and full name
+
+2. Justify the algorithm choice. what is its order? Is it optimized?
+
+3. Implement the algorithm in Java and add GUI to interact with the Genealogy trees. Each person full name will be displayed in a circle and circles will be linked together by lines.
+
+Project due date and presentation is April 13th 2020.
