@@ -20,4 +20,5 @@ The goal of this project is to create a genealogy tree application where we can 
 @YasmineToure -> 8 <br>
 
 ## Other Information
-NaN.
+The main repository is Rulis' <br>
+Upstream: https://github.com/angerulis/CSC4306-Project.git
