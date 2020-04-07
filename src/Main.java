@@ -18,11 +18,12 @@ public class Main {
         Node<Person> n4 = new Node<>(p4);
         Node<Person> n5 = new Node<>(p5, 1, n1, n2, null, null);
         Node<Person> n6 = new Node<>(p6, 1, n3, n4, n5, null);
-        Node<Person> n7 = new Node<>(p7, 1, n4, n5, null, new ArrayList<Node<Person>>(){{add(n6);}});
+        Node<Person> n7 = new Node<>(p7, 1, n4, n5, null, new ArrayList<>(){{add(n6);}});
         Node<Person> n8 = new Node<>(p8, 2, n5, n6, null, null);
 
         // Setting missing spouse
         n5.setSpouse(n6);
+        n5.setSiblings(new ArrayList<>(){{add(n6);}});
 
     }
 }
