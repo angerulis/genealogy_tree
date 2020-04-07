@@ -1,3 +1,11 @@
 //TODO
     //  Create a method that determines level automatically according to parents' level
     //
+
+
+
+    Issues:
+    + Cannot assign spouse as next person since the first spouse node is created before the second
+        + Same for siblings
+
+
