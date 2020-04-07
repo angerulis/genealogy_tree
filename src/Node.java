@@ -3,18 +3,15 @@ import java.util.Scanner;
 public class Node<T> implements NodeInterface {
     // ATTRIBUTES
     private T individual = null;
-    private int level=-1;
+    private int level=0;
     private Node<T> mother, father;
 
     // CONSTRUCTORS
     public Node() {}
     public Node(T individual) {
-        this.individual = individual;
+        this(individual, 0, null, null);
     }
-    public Node(T individual, int myLevel) {
-        this.individual = individual;
-        level = myLevel;
-    }
+    public Node(T individual, int myLevel) { this(individual, myLevel, null, null); }
     public Node(T individual, int myLevel, Node<T> mother, Node<T> father) {
         this.individual = individual;
         level = myLevel;
