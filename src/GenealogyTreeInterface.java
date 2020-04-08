@@ -37,7 +37,7 @@ public interface GenealogyTreeInterface {
      * @return a collection of all nodes direct
      * grand mother of selected node
      */
-    ArrayList<NodeInterface> findAllGrandMother(NodeInterface child);
+    ArrayList<NodeInterface> findAllGrandMothers(NodeInterface child);
 
     /**
      * @return a collection of all nodes
