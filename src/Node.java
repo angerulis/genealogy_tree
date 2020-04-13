@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.concurrent.DelayQueue;
 
 public class Node<T> implements NodeInterface {
     // ATTRIBUTES
@@ -53,4 +54,7 @@ public class Node<T> implements NodeInterface {
 
     public boolean isFirstGeneration() { return mother == null && father == null; }
 
+
+    public static void getNodePerLevel(Node<Person> root, int levelWanted){
+    }
 }
