@@ -43,7 +43,7 @@ public interface GenealogyTreeInterface {
      * @return a collection of all nodes
      * grand parent of selected node per tree level
      */
-    ArrayList<NodeInterface> findAllGrandParentsPerLevel(NodeInterface child, int level);
+    ArrayList<Node<Person>> findAllGrandParentsPerLevel(Node<Person> child, int level);
 
     /**
      * @update the information of a specific individual

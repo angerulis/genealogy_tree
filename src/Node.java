@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Node<T> implements NodeInterface {
     // ATTRIBUTES
     private T individual = null;
-    private int level=0;
+    private int level = 0;
     private Node<T> mother, father, spouse;
     private ArrayList<Node<T>> siblings = null, offspring;
     // CONSTRUCTORS

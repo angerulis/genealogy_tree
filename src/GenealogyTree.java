@@ -66,9 +66,54 @@ public class GenealogyTree implements GenealogyTreeInterface {
     }
 
     @Override
-    public ArrayList<NodeInterface> findAllGrandParentsPerLevel(NodeInterface child, int level) {
+    public ArrayList<Node<Person>> findAllGrandParentsPerLevel(Node<Person> child, int level) {
+        return getAllNodesAtLevel(child, level);
+    }
 
-        return null;
+    public ArrayList<Node<Person>> getAllNodesAtLevel(Node<Person> person, int level) {
+        level = person.getLevel();
+        ArrayList<Node<Person>> list = new ArrayList<>();
+        if (level == 0 && person.getLevel() == 0) {
+            if (person.getSiblings() != null)
+                for (Node<Person> p : person.getSiblings())
+                    for (Node<Person> p1 : p.getSiblings())
+                        for (int i = 0; i < p.getSiblings().size(); ++i)
+                            if (p1.getOffspring().get(i).getOffspring() != null)
+                                list.add(person);
+            if (person.getSpouse().getSiblings() != null)
+                for (Node<Person> p : person.getSpouse().getSiblings())
+                    for (Node<Person> p1 : p.getSiblings())
+                        for (int i = 0; i < p.getSiblings().size(); ++i)
+                            if (p1.getOffspring().get(i).getOffspring() != null)
+                                list.add(person);
+            if (list.contains(person) && person.getSpouse() != null)
+                list.add(person.getSpouse());
+
+            return list;
+        }
+        else{
+            try {
+                if (person.getOffspring() != null)
+                    for (Node<Person> p : person.getOffspring())
+                        for (Node<Person> p1 : p.getOffspring())
+                            if (p1 != null)
+                                for (int i = 0; i < person.getOffspring().size(); ++i)
+                                    if (person.getOffspring().get(i).getOffspring() != null)
+                                        list.add(person);
+
+//                for (Node<Person> personNode : person.getOffspring())
+//                    if (personNode != null)
+//                        for (Node<Person> personNode1 : personNode.getOffspring())
+//                            if (personNode1 != null)
+//                                list.add(person);
+                for (Node<Person> personNode : person.getSiblings())
+                    getAllNodesAtLevel(personNode, level);
+            }
+            catch (Exception e){
+                System.out.println("No Grandparent at level.");
+            }
+        }
+        return list;
     }
 
     @Override

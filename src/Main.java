@@ -13,6 +13,7 @@ public class Main {
         Person p6 = new Person("Ben", "Jane", "Gagnoa", 78, new Date(), null);
         Person p7 = new Person("Rita", "Jane", "Gagnoa", 84, new Date(), null);
         Person p8 = new Person("John", "Jane", "Gagnoa", 42, new Date(), null);
+        Person p9 = new Person("Sekouba", "Bambino", "Lakota", 53, new Date(), null);
 
         Node<Person> n1 = new Node<>(p1);
         Node<Person> n2 = new Node<>(p2);
@@ -22,6 +23,7 @@ public class Main {
         Node<Person> n6 = new Node<>(p6, 1, n3, n4, n5, null,null);
         Node<Person> n7 = new Node<>(p7, 1, n4, n5, null, new ArrayList<>(Collections.singletonList(n6)),null);
         Node<Person> n8 = new Node<>(p8, 2, n5, n6, null, null,null);
+        Node<Person> n9 = new Node<>(p9, 3, n8,n8, null, null, null);
 
         // Setting missing relations
             // Setting offspring
@@ -31,6 +33,7 @@ public class Main {
         n4.setOffspring(new ArrayList<>(Arrays.asList(n6,n7)));
         n5.setOffspring(new ArrayList<>(Collections.singletonList(n8)));
         n6.setOffspring(new ArrayList<>(Collections.singletonList(n8)));
+        n8.setOffspring(new ArrayList<>(Collections.singletonList(n9)));
 
             // Setting Spouse
         n1.setSpouse(n2); n2.setSpouse(n1);
@@ -40,5 +43,13 @@ public class Main {
             // Setting Siblings
         n5.setSiblings(new ArrayList<>(Collections.singletonList(n6))); // Creates an ArrayList and initiate it with a single value.
 
+        // Creating Tree
+        GenealogyTree tree = new GenealogyTree(n1);
+        GenealogyTree tree2 = new GenealogyTree(n4);
+        GenealogyTree tree3 = new GenealogyTree(n8);
+        tree.setLeftTree(tree2); tree2.setLeftTree(tree3);
+
+        ArrayList<Node<Person>> result = tree.findAllGrandParentsPerLevel(n1, 0);
+        System.out.println(result.size());
     }
 }
