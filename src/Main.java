@@ -22,7 +22,6 @@ public class Main {
         Node<Person> n7 = new Node<>(p7, 1, n4, n5, null, new ArrayList<>(Collections.singletonList(n6)));
         Node<Person> n8 = new Node<>(p8, 2, n5, n6, null, null);
 
-        Node.iterativeDFS(n8);
         // Setting missing spouse
         n5.setSpouse(n6);
         n5.setSiblings(new ArrayList<>(Collections.singletonList(n6))); // Creates an ArrayList and initiate it with a single value.
