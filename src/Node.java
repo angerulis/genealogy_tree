@@ -65,10 +65,10 @@ public class Node<T> implements NodeInterface {
         This method compare the first name and last name in parameters
         with those of the parents( mother & father), spouse and all siblings
         We start from the current node then go to his parent node after to his spouse
-        and finaly in his siblings in which this method will repeat in recursive
+        and finally in his siblings in which this method will repeat in recursive
          */
 
-        /*PROBLEM : Due to generecity I can not have acces to the Person object to perform the task
+        /*PROBLEM : Due to generality I can not have access to the Person object to perform the task
         The variable curNode should be like : Node<Person> curNode = this;
         Or if i keep the genericity i should add the starting node as parameter
          public Node<Person> findNode(String firstName, String lastName, Node<Person> startingNode)
@@ -79,12 +79,12 @@ public class Node<T> implements NodeInterface {
         if(curNode == null)
             return null;
         else{
-            //Compaire Full name with mother full name
+            //Compare Full name with mother full name
             if(curNode.getIndividual() != null)
                 if(curNode.getIndividual().getLastName().equals(lastName) && curNode.getIndividual().getFirstName().equals(firstName) )
                     return curNode;
 
-            //Compaire Full name with mother full name
+            //Compare Full name with mother full name
             if(curNode.getMother() != null)
                 if(curNode.getMother().getIndividual().getLastName().equals(lastName) && curNode.getMother().getIndividual().getFirstName().equals(firstName))
                     return curNode.getMother();
