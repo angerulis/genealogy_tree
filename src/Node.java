@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Node<T> implements NodeInterface {
     // ATTRIBUTES
@@ -106,6 +106,9 @@ public class Node<T> implements NodeInterface {
 
         }
         return curNode;
+    }
+
+
     }
 }
 
