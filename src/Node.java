@@ -56,4 +56,58 @@ public class Node<T> implements NodeInterface {
 
     public boolean isFirstGeneration() { return mother == null && father == null; }
 
+    //Find a person through the node links
+    public Node<Person> findNode(String firstName, String lastName){
+
+        //
+
+        /*
+        This method compare the first name and last name in parameters
+        with those of the parents( mother & father), spouse and all siblings
+        We start from the current node then go to his parent node after to his spouse
+        and finaly in his siblings in which this method will repeat in recursive
+         */
+
+        /*PROBLEM : Due to generecity I can not have acces to the Person object to perform the task
+        The variable curNode should be like : Node<Person> curNode = this;
+        Or if i keep the genericity i should add the starting node as parameter
+         public Node<Person> findNode(String firstName, String lastName, Node<Person> startingNode)
+         */
+        Node<Person> curNode = new Node<>();
+
+
+        if(curNode == null)
+            return null;
+        else{
+            //Compaire Full name with mother full name
+            if(curNode.getIndividual() != null)
+                if(curNode.getIndividual().getLastName().equals(lastName) && curNode.getIndividual().getFirstName().equals(firstName) )
+                    return curNode;
+
+            //Compaire Full name with mother full name
+            if(curNode.getMother() != null)
+                if(curNode.getMother().getIndividual().getLastName().equals(lastName) && curNode.getMother().getIndividual().getFirstName().equals(firstName))
+                    return curNode.getMother();
+
+            if(curNode.getFather() != null)
+                if(curNode.getFather().getIndividual().getLastName().equals(lastName) && curNode.getFather().getIndividual().getFirstName().equals(firstName))
+                    return curNode.getFather();
+
+            if(curNode.getSpouse() != null)
+                if(curNode.getSpouse().getIndividual().getLastName().equals(lastName) && curNode.getSpouse().getIndividual().getFirstName().equals(firstName))
+                    return curNode.getSpouse();
+
+
+            assert curNode.getSiblings() != null;
+            if(curNode.getSiblings() != null)
+                for (Node<Person> node : curNode.getSiblings()) {
+                node.findNode(firstName, lastName);
+            }
+
+        }
+        return curNode;
+    }
 }
+
+
+
