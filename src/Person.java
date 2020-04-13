@@ -9,16 +9,18 @@ public class Person {
     private String firstName, lastName, placeOfBirth;
     private int age;
     private Date dateOfBirth;
+    boolean sex;
     private ImageIcon picture;
-
+    //Sex added : Male = true & Female = false
     // CONSTRUCTOR
     Person(){}
-    Person(String firstName, String lastName, String placeOfBirth, int age, Date dateOfBirth, ImageIcon picture){
+    Person(String firstName, String lastName, String placeOfBirth, int age, Date dateOfBirth, boolean sex, ImageIcon picture){
         this.firstName = firstName;
         this.lastName = lastName;
         this.placeOfBirth = placeOfBirth;
         this.age = age;
         this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
         this.picture = picture;
     }
 
@@ -36,10 +38,12 @@ public class Person {
             System.out.print("Age: ");
             int age = input.nextInt();
             input.nextLine();
+            System.out.print("Sex M = true & F = false): ");
+            boolean sex = input.nextBoolean();
             System.out.print("Date of Birth (Day/Month/Year): ");
             String dateString = input.nextLine();
             Date date = dateFormat.parse(dateString);
-            return new Person(fName, lName, placeOfBirth, age, date, null);
+            return new Person(fName, lName, placeOfBirth, age, date,sex, null);
         }
         catch (ParseException p){
             System.out.println(p.getMessage());
@@ -62,6 +66,8 @@ public class Person {
     public void setPicture(ImageIcon picture) {
         this.picture = picture;
     }
+    public void setSex(boolean sex) { this.sex = sex; }
+
     public void setPlaceOfBirth(String placeOfBirth) {
         this.placeOfBirth = placeOfBirth;
     }
@@ -81,6 +87,9 @@ public class Person {
     public ImageIcon getPicture() {
         return picture;
     }
+
+    public boolean isMale() {return sex; }
+
     public String getPlaceOfBirth() {
         return placeOfBirth;
     }

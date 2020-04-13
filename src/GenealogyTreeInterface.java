@@ -12,7 +12,7 @@ public interface GenealogyTreeInterface {
      * @return a node after it insert it at a level according
      * to the parent's name
      */
-    NodeInterface insertChild(NodeInterface child, int level, String parentName);
+    NodeInterface insertChild(NodeInterface child, int level, String parentFirstName, String parentLastName);
 
     /**
      * @return a collection of nodes
