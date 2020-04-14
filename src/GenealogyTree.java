@@ -101,7 +101,7 @@ public class GenealogyTree implements GenealogyTreeInterface {
     }
 
     @Override
-    public ArrayList<NodeInterface> findAllGrandParentsPerLevel(NodeInterface child, int level) {
+    public ArrayList<Node<Person>> findAllGrandParentsPerLevel(Node<Person> child, int level) {
         return null;
     }
 
