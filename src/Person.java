@@ -43,13 +43,42 @@ public class Person {
             System.out.print("Date of Birth (Day/Month/Year): ");
             String dateString = input.nextLine();
             Date date = dateFormat.parse(dateString);
-            return new Person(fName, lName, placeOfBirth, age, date,sex, null);
+            return new Person(fName, lName, placeOfBirth, age, date, sex, null);
         }
         catch (ParseException p){
             System.out.println(p.getMessage());
             return null;
         }
     } // to modify to add picture
+    Person interactiveMod(){
+        try {
+            Scanner input = new Scanner(System.in);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/y");
+            System.out.print("First Name: ");
+            String fName = input.nextLine();
+            this.setFirstName(fName);
+            System.out.print("Last Name: ");
+            String lName = input.nextLine();
+            this.setLastName(lName);
+            System.out.print("Place of Birth: ");
+            String placeOfBirth = input.nextLine();
+            this.setPlaceOfBirth(placeOfBirth);
+            System.out.print("Age: ");
+            int age = input.nextInt();
+            this.setAge(age);
+            input.nextLine();
+            System.out.print("Sex M = true & F = false): ");
+            boolean sex = input.nextBoolean();
+            this.setSex(sex);
+            System.out.print("Date of Birth (Day/Month/Year): ");
+            String dateString = input.nextLine();
+            Date date = dateFormat.parse(dateString);
+            this.setDateOfBirth(date);
+
+        } catch (ParseException pe){ }
+
+        return this;
+    }
 
     public void setAge(int age) {
         this.age = age;

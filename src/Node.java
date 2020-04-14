@@ -2,7 +2,6 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Node<T> implements NodeInterface {
     // ATTRIBUTES
@@ -233,6 +232,39 @@ public class Node<T> implements NodeInterface {
             if (p.getIndividual().getFirstName().equalsIgnoreCase(firstNameFather) && p.getIndividual().getLastName().equalsIgnoreCase(lastNameFather)
                     && p.getIndividual().sex)
                 father = p;
+            if (p.getIndividual().getFirstName().equalsIgnoreCase(firstNameMother) && p.getIndividual().getLastName().equalsIgnoreCase(lastNameMother)
+                    && !p.getIndividual().sex)
+                mother = p;
+        }
+
+        if (mother != null && father != null){ // Adding Child
+            mother.setOffspring(new ArrayList<>(Collections.singleton(child)));
+            father.setOffspring(new ArrayList<>(Collections.singleton(child)));
+        }
+    }
+
+    /**
+     * insertChild has the same principle as adding child, but here there are preexisting child(ren)
+     * @param level
+     * @param firstNameFather
+     * @param lastNameFather
+     * @param firstNameMother
+     * @param lastNameMother
+     * @param root
+     * @param child
+     */
+    public static void insertChild(int level, String firstNameFather, String lastNameFather, String firstNameMother,
+                                   String lastNameMother, Node<Person> root, Node<Person> child){
+        ArrayList<Node<Person>> levelNode = new ArrayList<>();
+        Node<Person> mother = null;
+        Node<Person> father = null;
+
+        getNodePerLevel(root, level, levelNode); // root is an existing node (seed) and level node returns the node at a particular level.
+
+        for (Node<Person> p : levelNode){ // Checking
+            if (p.getIndividual().getFirstName().equalsIgnoreCase(firstNameFather) && p.getIndividual().getLastName().equalsIgnoreCase(lastNameFather)
+                    && p.getIndividual().sex)
+                father = p;
             if (p.getIndividual().getFirstName().equalsIgnoreCase(firstNameFather) && p.getIndividual().getLastName().equalsIgnoreCase(lastNameFather)
                     && !p.getIndividual().sex)
                 mother = p;
@@ -242,8 +274,67 @@ public class Node<T> implements NodeInterface {
             mother.getOffspring().add(child);
             father.getOffspring().add(child);
         }
+
+        assert mother != null;
+        if (mother.getOffspring() != null){
+            child.setSiblings(mother.getOffspring());
+            for (Node<Person> p : mother.getOffspring())
+                p.getSiblings().add(child);
+        }
     }
 
+    /**
+     * Here we still work by level. If we want a general search we can create a loop that iterate through a series of different levels.
+     * We also make use of a seed
+     * @param level
+     * @param firstNameFather
+     * @param lastNameFather
+     * @param firstName
+     * @param lastName
+     * @param root
+     * @return
+     */
+    public static Node<Person> find(int level, String firstNameFather, String lastNameFather, String firstName,
+                                   String lastName, Node<Person> root){
+        ArrayList<Node<Person>> levelNode = new ArrayList<>();
+        Node<Person> found = null;
+        Node<Person> father = null;
+
+        getNodePerLevel(root, level, levelNode); // root is an existing node (seed) and level node returns the node at a particular level.
+
+        for (Node<Person> p : levelNode){ // Checking
+            if (p.getIndividual().getFirstName().equalsIgnoreCase(firstNameFather) && p.getIndividual().getLastName().equalsIgnoreCase(lastNameFather))
+                father = p;
+            for (Node<Person> q: father.getOffspring())
+                if (q.getIndividual().getFirstName().equalsIgnoreCase(firstName) && q.getIndividual().getLastName().equalsIgnoreCase(lastName))
+                    found = q;
+        }
+        return found;
+    }
+
+    public static void modifyInfo(int level, Node<Person> root, String firstName, String lastName){
+        ArrayList<Node<Person>> people = new ArrayList<>();
+        getNodePerLevel(root, level, people);
+        for (Node<Person> p : people)
+            if(p.getIndividual().getFirstName().equalsIgnoreCase(firstName) && p.getIndividual().getLastName().equalsIgnoreCase(lastName))
+                root = p;
+        root.getIndividual().interactiveMod();
+    }
+    public static void delete(int level, String firstName, String lastName, Node<Person> root){
+        ArrayList<Node<Person>> nodes = new ArrayList<>();
+        getNodePerLevel(root, level, nodes);
+        for (Node<Person> p : nodes)
+            if(p.getIndividual().getFirstName().equalsIgnoreCase(firstName) && p.getIndividual().getLastName().equalsIgnoreCase(lastName))
+                root = p;
+
+        root.offspring = null;
+        root.individual = null;
+        root.father = null;
+        root.mother = null;
+        root.siblings = null;
+        root.spouse = null;
+        root.individual = null;
+    }
 }
 
 
