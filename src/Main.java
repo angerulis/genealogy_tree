@@ -51,10 +51,12 @@ public class Main {
 //              System.out.println("That's it!");
 //          }
 //    }
-//       back =  Node.allGrandParentsPerLevel(n1, 0);
-       for(Node<Person> w : Node.getNodePerLevel(n1, 0, back)){
-           System.out.println(w.getIndividual().getFirstName());
-       }
+//        Node.getNodePerLevel(n1, 2, back);
+//       back =  Node.allGrandParentsPerLevel(n1, 2);
+       back = Node.allDirectGrandMothers(n6);
+//       for(Node<Person> w : Node.getNodePerLevel(n1, 2, back)){
+//           System.out.println(w.getIndividual().getFirstName());
+//       }
 //        System.out.println(n1.getOffspring().get(0));
         System.out.println(back.size());
 //        System.out.println(back.get(1) + "\n" + back.get(3));

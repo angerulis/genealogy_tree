@@ -114,6 +114,8 @@ public class Node<T> implements NodeInterface {
         }
         return curNode;
     }
+
+
     public static void iterativeDFS(Node<Person> root){
         Deque<Node<Person>> stack = new ArrayDeque<>();
         stack.push(root);
@@ -133,33 +135,58 @@ public class Node<T> implements NodeInterface {
                     getNodePerLevel(root.getFather(), levelWanted, nodes);
             else {
                 nodes.add(root); // If the level is equal, we add root as a match and its spouse node
-                nodes.add(root.getSpouse());
+                if (root.getSpouse() != null)
+                    nodes.add(root.getSpouse());
                 if (root.getSiblings() != null)
                     for (Node<Person> sibling: root.getSiblings()){ // add siblings if any
                         nodes.add(sibling);
                         nodes.add(sibling.spouse);
                     }
-
-                    getNodePerLevel(root.getSpouse().getFather(), levelWanted, nodes); // StackOverFlowError // root.getOffspring.getFather
-
+                try {
+                    if (root.getOffspring() != null) // add other parents that might be on the same level and have connection from offspring's spouse
+                        for (Node<Person> p : root.getOffspring())
+                            if (p != null && p.getSpouse() != null)
+                                getNodePerLevel(p.getSpouse().getFather(), levelWanted, nodes);
+                } catch (StackOverflowError sofe){ // Catch StackOverFlow
+                    System.out.println("Done!");
+                }
              }
 
-        return removeDuplicates(nodes);
+        return removeDuplicates(nodes); // Returns the nodes that match and remove the duplicates in the list
     }
-    private static ArrayList<Node<Person>> allDirectGrandMothersCall(@NotNull Node<Person> root){
-        ArrayList<Node<Person>> directGM = null;
+    private static ArrayList<Node<Person>> allDirectGrandMothersCall(@NotNull Node<Person> root){ // Find All direct Grandmothers
+        ArrayList<Node<Person>> directGM = new ArrayList<>(); // Creates an empty list of direct grandmothers
          try {
              directGM = new ArrayList<>() {{
-                 add(root.getFather().getMother());
-                 add(root.getMother().getMother());
+                 if (root.getFather().getMother() != null && root.getMother().getMother() != null) { //i f grandmother isn't null, add them
+                     add(root.getFather().getMother());
+                     add(root.getMother().getMother());
+                 }
              }};
          }catch (NullPointerException npe){
              System.out.println(root.getIndividual().getFirstName() + " has no grand mothers.");
          }
-        return directGM;
+        return directGM; // return grandmothers
     }
     public static ArrayList<Node<Person>> allDirectGrandMothers(Node<Person> root){
-            return allDirectGrandMothersCall(root);
+            return allDirectGrandMothersCall(root); // Call and return Grandmothers
+    }
+    private static ArrayList<Node<Person>> allDirectGrandFathersCall(@NotNull Node<Person> root){ // Find All direct Grandmothers
+        ArrayList<Node<Person>> directGM = new ArrayList<>(); // Creates an empty list of direct grandfathers
+        try {
+            directGM = new ArrayList<>() {{
+                if (root.getFather().getFather() != null && root.getMother().getFather() != null) { //i f grandmother isn't null, add them
+                    add(root.getFather().getFather());
+                    add(root.getMother().getFather());
+                }
+            }};
+        }catch (NullPointerException npe){
+            System.out.println(root.getIndividual().getFirstName() + " has no grand mothers.");
+        }
+        return directGM; // return grandmothers
+    }
+    public static ArrayList<Node<Person>> allDirectGrandFathers(Node<Person> root){
+            return allDirectGrandFathersCall(root); // Call and return GrandFathers
     }
     public static ArrayList<Node<Person>> allGrandParentsPerLevel(Node<Person> root, int level){
         ArrayList<Node<Person>> nodes = new ArrayList<>(), grandParents = new ArrayList<>();
@@ -176,7 +203,6 @@ public class Node<T> implements NodeInterface {
         }
         return grandParents;
     }
-
     @Contract("_ -> param1")
     public static <T> @NotNull ArrayList<T> removeDuplicates(ArrayList<T> list) {
         // Create a new LinkedHashSet
