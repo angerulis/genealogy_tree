@@ -148,7 +148,7 @@ public class Node<T> implements NodeInterface {
                             if (p != null && p.getSpouse() != null)
                                 getNodePerLevel(p.getSpouse().getFather(), levelWanted, nodes);
                 } catch (StackOverflowError sofe){ // Catch StackOverFlow
-                    System.out.println("Done!");
+                    System.out.print("");
                 }
              }
 
@@ -221,6 +221,29 @@ public class Node<T> implements NodeInterface {
         // return the list
         return list;
     }
+    public static void addingChild(int level, String firstNameFather, String lastNameFather, String firstNameMother,
+                                   String lastNameMother, Node<Person> root, Node<Person> child){
+        ArrayList<Node<Person>> levelNode = new ArrayList<>();
+        Node<Person> mother = null;
+        Node<Person> father = null;
+
+        getNodePerLevel(root, level, levelNode); // root is an existing node (seed) and level node returns the node at a particular level.
+
+        for (Node<Person> p : levelNode){ // Checking
+            if (p.getIndividual().getFirstName().equalsIgnoreCase(firstNameFather) && p.getIndividual().getLastName().equalsIgnoreCase(lastNameFather)
+                    && p.getIndividual().sex)
+                father = p;
+            if (p.getIndividual().getFirstName().equalsIgnoreCase(firstNameFather) && p.getIndividual().getLastName().equalsIgnoreCase(lastNameFather)
+                    && !p.getIndividual().sex)
+                mother = p;
+        }
+
+        if (mother != null && father != null){ // Adding Child
+            mother.getOffspring().add(child);
+            father.getOffspring().add(child);
+        }
+    }
+
 }
 
 

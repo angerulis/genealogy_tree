@@ -39,29 +39,43 @@ public class Main {
         n6.setSiblings(new ArrayList<>(Collections.singletonList(n5)));
 
         ArrayList<Node<Person>> back = new ArrayList<>();
-//        Node.getNodePerLevel(n4, 1, back);
-////        System.out.println(n1.getOffspring().get(0));
-//        System.out.println(back.size());
-////        System.out.println(back.get(1) + "\n" + back.get(3));
-//        try {
-//            for (Node<Person> a : back)
-//                System.out.println(a.getIndividual().getFirstName());
-//        }
-//          catch (NullPointerException e){
-//              System.out.println("That's it!");
-//          }
-//    }
-//        Node.getNodePerLevel(n1, 2, back);
-//       back =  Node.allGrandParentsPerLevel(n1, 2);
-       back = Node.allDirectGrandMothers(n6);
-//       for(Node<Person> w : Node.getNodePerLevel(n1, 2, back)){
-//           System.out.println(w.getIndividual().getFirstName());
-//       }
-//        System.out.println(n1.getOffspring().get(0));
-        System.out.println(back.size());
-//        System.out.println(back.get(1) + "\n" + back.get(3));
+        // Test getNodePerLevel
+        Node.getNodePerLevel(n4, 1, back);
         try {
             for (Node<Person> a : back)
+                System.out.println(a.getIndividual().getFirstName());
+        }
+        catch (NullPointerException e){
+            System.out.println("That's it!");
+        }
+        System.out.println();
+
+        // Test get allGrandParentsPerLevel
+        back = Node.allGrandParentsPerLevel(n1, 0);
+        try {
+            for (Node<Person> a : back )
+                System.out.println(a.getIndividual().getFirstName());
+        }
+        catch (NullPointerException e){
+            System.out.println("That's it!");
+        }
+
+        System.out.println();
+        // Test allDirectGrandMothers
+        back = Node.allDirectGrandMothers(n8);
+        try {
+            for (Node<Person> a : back )
+                System.out.println(a.getIndividual().getFirstName());
+        }
+        catch (NullPointerException e){
+            System.out.println("That's it!");
+        }
+
+        System.out.println();
+        // Test allDirectGrandFathers
+        back = Node.allDirectGrandFathers(n8);
+        try {
+            for (Node<Person> a : back )
                 System.out.println(a.getIndividual().getFirstName());
         }
         catch (NullPointerException e){
