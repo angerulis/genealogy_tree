@@ -220,7 +220,7 @@ public class Node<T> implements NodeInterface {
         // return the list
         return list;
     }
-    public static void addingChild(int level, String firstNameFather, String lastNameFather, String firstNameMother,
+    public static boolean addingChild(int level, String firstNameFather, String lastNameFather, String firstNameMother,
                                    String lastNameMother, Node<Person> root, Node<Person> child){
         ArrayList<Node<Person>> levelNode = new ArrayList<>();
         Node<Person> mother = null;
@@ -241,6 +241,9 @@ public class Node<T> implements NodeInterface {
             mother.setOffspring(new ArrayList<>(Collections.singleton(child)));
             father.setOffspring(new ArrayList<>(Collections.singleton(child)));
         }
+        else
+            return false;
+        return true;
     }
 
     /**
@@ -253,7 +256,7 @@ public class Node<T> implements NodeInterface {
      * @param root
      * @param child
      */
-    public static void insertChild(int level, String firstNameFather, String lastNameFather, String firstNameMother,
+    public static boolean insertChild(int level, String firstNameFather, String lastNameFather, String firstNameMother,
                                    String lastNameMother, Node<Person> root, Node<Person> child){
         ArrayList<Node<Person>> levelNode = new ArrayList<>();
         Node<Person> mother = null;
@@ -269,18 +272,20 @@ public class Node<T> implements NodeInterface {
                     && !p.getIndividual().sex)
                 mother = p;
         }
-
-        if (mother != null && father != null){ // Adding Child
-            mother.getOffspring().add(child);
-            father.getOffspring().add(child);
-        }
-
         assert mother != null;
         if (mother.getOffspring() != null){
             child.setSiblings(mother.getOffspring());
             for (Node<Person> p : mother.getOffspring())
                 p.getSiblings().add(child);
         }
+        if (father != null && mother != null){ // Adding Child
+            assert mother.getOffspring() != null;
+            mother.getOffspring().add(child);
+            father.getOffspring().add(child);
+        }
+        else
+            return false;
+        return true;
     }
 
     /**
