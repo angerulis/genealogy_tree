@@ -81,5 +81,11 @@ public class Main {
         catch (NullPointerException e){
             System.out.println("That's it!");
         }
+
+
+        GenealogyTreeGUI treeGUI = new GenealogyTreeGUI();
+        treeGUI.drawTree(n1, 200, 100);
+
+
     }
 }
