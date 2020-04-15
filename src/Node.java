@@ -220,7 +220,7 @@ public class Node<T> implements NodeInterface {
         // return the list
         return list;
     }
-    public static void addingChild(int level, String firstNameFather, String lastNameFather, String firstNameMother,
+    public static boolean addingChild(int level, String firstNameFather, String lastNameFather, String firstNameMother,
                                    String lastNameMother, Node<Person> root, Node<Person> child){
         ArrayList<Node<Person>> levelNode = new ArrayList<>();
         Node<Person> mother = null;
@@ -241,6 +241,9 @@ public class Node<T> implements NodeInterface {
             mother.setOffspring(new ArrayList<>(Collections.singleton(child)));
             father.setOffspring(new ArrayList<>(Collections.singleton(child)));
         }
+        else
+            return false;
+        return true;
     }
 
     /**
