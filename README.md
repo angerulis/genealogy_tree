@@ -1,5 +1,5 @@
-# CSC-4306 - Design and Analysis of Algorithms
-## Project
+# genealogy tree algorithm
+## Project CSC-4306 - Design and Analysis of Algorithms
 The goal of this project is to create a genealogy tree application where we can interact with a Graphical User Interface (GUI).
 <br>The following features are expected:
 1. Adding a child per level and parents' name
